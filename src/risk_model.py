@@ -17,6 +17,18 @@ def calculate_risk(customer_df):
 
     customer_df['risk_score'] = customer_df.apply(risk_score, axis=1)
 
+    # ✅ ADD THIS BLOCK (VERY IMPORTANT)
+    def label(score):
+        if score > 70:
+            return 'High'
+        elif score > 30:
+            return 'Medium'
+        else:
+            return 'Low'
+
+    customer_df['risk_label'] = customer_df['risk_score'].apply(label)
+
+    # ---------------- EXPLANATION ----------------
     def explain(row):
         reasons = []
 
